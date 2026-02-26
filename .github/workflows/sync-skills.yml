@@ -1,0 +1,36 @@
+name: Sync Skills from testRepoB
+
+on:
+  repository_dispatch:
+    types: [sync_skills] # Matches the event-type from Repo B
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo A ()
+        uses: actions/checkout@v4
+        with:
+          path: repo-a
+
+      - name: Checkout Repo B ()
+        uses: actions/checkout@v4
+        with:
+          repository: ssbushi/testRepoB
+          path: repo-b
+
+      - name: Copy Updated Skills
+        run: |
+          # Copy everything from B's skills folder into A's folder
+          # (Adjust the exact paths based on your repo structure)
+          cp -r repo-b/skills/* repo-a/skills/
+
+      # HIGHLY RECOMMENDED: Create a PR rather than pushing straight to main
+      - name: Create Pull Request in Repo A
+        uses: peter-evans/create-pull-request@v6
+        with:
+          path: repo-a
+          commit-message: "chore: sync updated skills from ssbushi/testRepoB"
+          title: "🤖 Sync updated skills from testRepoB"
+          branch: "sync-skills"
+          body: "Automated PR to sync the latest skills from `ssbushi/testRepoB@main`."
