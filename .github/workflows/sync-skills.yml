@@ -33,5 +33,5 @@ jobs:
           path: repo-a
           commit-message: "chore: sync updated skills from ssbushi/testRepoB"
           title: "🤖 Sync updated skills from testRepoB"
-          branch: "sync-skills"
+          branch: "sync-the-skills"
           body: "Automated PR to sync the latest skills from `ssbushi/testRepoB@main`."
