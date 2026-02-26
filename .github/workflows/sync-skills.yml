@@ -23,6 +23,7 @@ jobs:
         run: |
           # Copy everything from B's skills folder into A's folder
           # (Adjust the exact paths based on your repo structure)
+          mkdir -p repo-a/skills/
           cp -r repo-b/skills/* repo-a/skills/
 
       # HIGHLY RECOMMENDED: Create a PR rather than pushing straight to main
